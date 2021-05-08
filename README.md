@@ -13,7 +13,7 @@ Inspired by https://github.com/jbranchaud/til.
 
 ### Cmake
 
-- [Compiler Warning Flags](compiler-warning-flags.md)
+- [Compiler Warning Flags](cmake/compiler-warning-flags.md)
 
 ### C++
 
