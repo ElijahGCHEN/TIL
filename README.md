@@ -18,7 +18,7 @@ Inspired by https://github.com/jbranchaud/til.
 ### C++
 - [Trivia](c++/trivia.md)
 - [Delete and Explicit Keywords](c++/delete-and-explicit-keywords.md)
-- [Variadic Template](c++/variadic-template.md)
+- [Variadic Templates](c++/variadic-templates.md)
 
 
 
