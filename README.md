@@ -18,6 +18,7 @@ Inspired by https://github.com/jbranchaud/til.
 ### C++
 
 - [Delete and Explicit Keywords](c++/delete-and-explicit-keywords.md)
+- [Variadic Template](c++/variadic-template.md)
 
 
 
