@@ -16,7 +16,7 @@ Inspired by https://github.com/jbranchaud/til.
 - [Compiler Warning Flags](cmake/compiler-warning-flags.md)
 
 ### C++
-
+- [Trivia](c++/trivia.md)
 - [Delete and Explicit Keywords](c++/delete-and-explicit-keywords.md)
 - [Variadic Template](c++/variadic-template.md)
 
