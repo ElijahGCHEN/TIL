@@ -6,6 +6,7 @@ Inspired by https://github.com/jbranchaud/til.
 ## Reverse Chronological Order
 - [2021/05/08](date/20210508.md)
 - [2021/05/09](date/20210509.md)
+- [2021/05/10](date/20210510.md)
 
 ###
 
@@ -15,12 +16,14 @@ Inspired by https://github.com/jbranchaud/til.
 ### Cmake
 
 - [Compiler Warning Flags](cmake/compiler-warning-flags.md)
+- [Set Target Properties](cmake/set-target-properties.md)
 
 ### C++
 - [Trivia](c++/trivia.md)
 - [Delete and Explicit Keywords](c++/delete-and-explicit-keywords.md)
 - [Variadic Templates](c++/variadic-templates.md)
 - [Template Specification](c++/template-specialization.md)
+- [Class Template](c++/class-template.md)
 
 
 
