@@ -17,6 +17,9 @@ Inspired by https://github.com/jbranchaud/til.
 
 - [Compiler Warning Flags](cmake/compiler-warning-flags.md)
 - [Set Target Properties](cmake/set-target-properties.md)
+- [Controw Flow Constructs](cmake/control-flow-constructs.md)
+- [Create a Library]
+- [For Specific IEDs]
 
 ### C++
 - [Trivia](c++/trivia.md)
