@@ -1,11 +1,11 @@
 # Using `target_compile_options`
 Syntax:
-
-      target_compile_options(${library target name}
-          ${Visibility level}
-            ${flags}
-      )
-
+```cmake
+target_compile_options(${library target name}
+   ${Visibility level}
+   ${flags}
+)
+```
 
 # Flags
 
@@ -24,6 +24,8 @@ Syntax:
 >- (C++ only) Taking the address of a variable that has been declared register.
 >- (C++ only) A base class is not initialized in the copy constructor of a derived class.
 
+- -03
+>Maximum optimization. When debugging is enabled, this option typically gives a poor debug view. ARM recommends debugging at lower optimization levels.
 
 # Visibility Levels
 - With the `PRIVATE` attribute, compile options will only be applied to the given target and not to other targets comsuming it.
