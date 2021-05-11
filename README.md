@@ -28,9 +28,9 @@ Inspired by https://github.com/jbranchaud/til.
 - [Class Template](c++/class-template.md)
 
 ### Software Engineering
-## Design Patterns
+#### Design Patterns
 - [Factory](design-patterns/factory-design-pattern.md)
-## Others
+#### Others
 - [Header-only-libraries](software-engineering/header-only-libraries.md)
 
 
