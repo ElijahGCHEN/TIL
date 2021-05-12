@@ -38,4 +38,7 @@ Inspired by https://github.com/jbranchaud/til.
 - [Header-only-libraries](software-engineering/header-only-library.md)
 - [Import projects without a .xcodeproj file](software-engineering/import-projects-without-xcodeproj-file.md)
 
+### Python
+- [Trivia](python/trivia.md)
+
 
