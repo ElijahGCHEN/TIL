@@ -21,3 +21,30 @@ constexpr double PI3 = PI2;  // ok
 
 ### assert
 `assert` is a function-like macro using the syntax `assert(expr)`. It evaluates *expr* and if the expression is false (i.e., zero), then assert writes a message and terminates the program. if the expression is true (i.e., is nonzero), then `assert` does nothing.
+
+### Documenting
+```cpp
+/**
+ * Sum numbers in a vector.
+ *
+ * This sum is the arithmetic sum, not some other kind of sum that only
+ * mathematicians have heard of.
+ *
+ * @param values Container whose values are summed.
+ * @return sum of `values`, or 0.0 if `values` is empty.
+ */
+ ```
+ Common tags include:
+1. Short Summary
+2. Extended Summary (recommended)
+3. Template Parameters (if applicable; for classes, methods, and functions)
+4. Function/Method Parameters (if applicable; for methods and functions)
+5. Returns (if applicable; for methods and functions)
+6. Throws (if applicable; for methods and functions)
+7. Exception Safety (optional; for methods and functions)
+8. Helper Functions (if applicable; for functions)
+9. Initializer Declaration (optional; for constants)
+10. See Also (optional)
+11. Notes (optional)
+12. References (optional)
+13. Examples (optional)
