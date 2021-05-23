@@ -48,3 +48,17 @@ constexpr double PI3 = PI2;  // ok
 11. Notes (optional)
 12. References (optional)
 13. Examples (optional)
+
+### Data Types
+As to the difference between the two sets, the C++ standard mandates minimum ranges for each, and that long long is at least as wide as long.
+```
+int型の数値の最小値: -2147483648
+int型の数値の最大値: 2147483647
+int型の数値のバイト数：４
+long int型の数値の最小値: -9223372036854775808
+long int型の数値の最大値: 9223372036854775807
+long int型の数値のバイト数：８
+long long int型の数値の最小値: -9223372036854775808
+long long int型の数値の最大値: 9223372036854775807
+long long　int型の数値のバイト数：８
+```
