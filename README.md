@@ -50,6 +50,6 @@ Inspired by https://github.com/jbranchaud/til.
 - [Trivia](python/trivia.md)
 
 ### Competitive Programming
-- [Grid](cp/grid.md)
+- [Grid](competitive-programming/grid.md)
 
 
