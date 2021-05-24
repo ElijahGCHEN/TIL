@@ -62,3 +62,21 @@ long long int型の数値の最小値: -9223372036854775808
 long long int型の数値の最大値: 9223372036854775807
 long long　int型の数値のバイト数：８
 ```
+
+### `#define` and `typedef`
+`#define` is a preprocessor token: the compiler itself will never see it.
+`typedef` is a compiler token: the preprocessor does not care about it.
+
+`typedef` obeys scoping rules just like variables, whereas `define` stays valid until the end of the compilation unit (or until a matching undef).
+
+Also, some things can be done with typedef that cannot be done with define. For example:
+```cpp
+typedef int* int_p1;
+int_p1 a, b, c;  // a, b, c are all int pointers
+
+#define int_p2 int*
+int_p2 a, b, c;  // only the first is a pointer, because int_p2
+                 // is replaced with int*, producing: int* a, b, c
+                 // which should be read as: int *a, b, c
+```
+
