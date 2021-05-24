@@ -49,4 +49,7 @@ Inspired by https://github.com/jbranchaud/til.
 ### Python
 - [Trivia](python/trivia.md)
 
+### Competitive Programming
+- [Grid](cp/grid.md)
+
 
