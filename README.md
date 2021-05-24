@@ -4,6 +4,10 @@ Inspired by https://github.com/jbranchaud/til.
 
 ---
 ## Reverse Chronological Order
+- [2021/05/24](date/20210524.md)
+- [2021/05/23](date/20210523.md)
+- [2021/05/19](date/20210519.md)
+- [2021/05/18](date/20210518.md)
 - [2021/05/12](date/20210512.md)
 - [2021/05/11](date/20210511.md)
 - [2021/05/10](date/20210510.md)
@@ -31,6 +35,9 @@ Inspired by https://github.com/jbranchaud/til.
 - [Variadic Templates](c++/variadic-templates.md)
 - [Template Specification](c++/template-specialization.md)
 - [Class Template](c++/class-template.md)
+- [Macro Definitio](c++/macro-definition.md)
+- [Enumeration](c++/enumerations.md)
+- [Modulo](c++/module.md)
 
 ### Software Engineering
 #### Design Patterns
