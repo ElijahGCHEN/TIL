@@ -37,7 +37,7 @@ Inspired by https://github.com/jbranchaud/til.
 - [Class Template](c++/class-template.md)
 - [Macro Definitio](c++/macro-definition.md)
 - [Enumeration](c++/enumerations.md)
-- [Modulo](c++/module.md)
+- [Modulo](c++/modulo.md)
 
 ### Software Engineering
 #### Design Patterns
