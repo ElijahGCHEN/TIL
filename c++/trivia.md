@@ -80,3 +80,56 @@ int_p2 a, b, c;  // only the first is a pointer, because int_p2
                  // which should be read as: int *a, b, c
 ```
 
+### callable objects
+A callable object is something that can be called like a function, with the syntax `object()` or `object(args)`; that is, a function pointer, or an object of a class type that overloads `operator()`.
+
+The overload of `operator()` in your class makes it callable.
+
+
+### Const reference v.s. normal parameter
+The difference is more prominent when you are passing a big struct/class.
+```cpp
+struct MyData {
+    int a,b,c,d,e,f,g,h;
+    long array[1234];
+};
+void DoWork(MyData md);
+void DoWork(const MyData& md);
+void DoWork(MyData const& md);
+```
+when you use use 'normal' parameter, you pass the parameter by value and hence creating a copy of the parameter you pass. if you are using const reference, you pass it by reference and the original data is not copied.
+
+in both cases, the original data cannot be modified from inside the function.
+
+### `bind()`
+```cpp
+void f(int n1, int n2, int n3, const int& n4, int n5)
+{
+    std::cout << n1 << ' ' << n2 << ' ' << n3 << ' ' << n4 << ' ' << n5 << '\n';
+}
+int n = 7;
+auto f1 = std::bind(f, _2, 42, _1, std::cref(n), n);
+f1(1, 2, 1001); // 1 is bound by _1, 2 is bound by _2, 1001 is unused
+                // makes a call to f(2, 42, 1, n, 7)
+```
+>The arguments to bind are copied or moved, and are never passed by reference unless wrapped in `std::ref` or `std::cref`.
+#### bind() v.s. lambda function
+The following two are equavelent:
+```cpp
+struct foo
+{
+  template < typename A, typename B >
+  void operator()(A a, B b)
+  {
+    cout << a << ' ' << b;
+  }
+};
+
+auto f = bind(foo(), _1, _2);
+f( "test", 1.2f ); // will print "test 1.2"
+```
+```cpp
+auto f = []( auto a, auto b ){ cout << a << ' ' << b; }
+f( "test", 1.2f ); // will print "test 1.2"
+```
+In C++14 there is nothing useful bind can do that can't also be done with lambdas.
