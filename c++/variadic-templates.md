@@ -19,4 +19,6 @@ void fun(Args&& ... args) {
 }
 ```
 
+Note that `std::forward<typename>()` is not only applicable for parameter packs. It can also cast a templated function parameter as-it-is to the inner functions.
+
 
