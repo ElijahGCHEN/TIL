@@ -4,6 +4,16 @@
 ### make_shared
 When we call `make_shared`, we must specify the type of object we want to create. Like the sequential-container `emplace` members, `make_shared` uses its argumentsto construct an object of the given type. It returns a `shared_ptr` that points to the constructed object. Ordinarily we use `auto` to make it easier to define an object to hold the result of `make_shared`.
 
+### Move and smart pointers
+Only one std::unique_ptr instance can point to a given object at a time, and when that instance is destroyed, the pointed-to object is deleted. The move constructor and move assignment operator allow the ownership of an object to be transferred around between `std::unique_ptr` instances. Such a transfer leaves the source object with a NULL pointer.
+
+For example, 
+```cpp
+std::unique_ptr p1(someClass);
+std::unique_ptr p2 = p1.move();
+```
+This will make `p1` as a NULL pointer.
+
 ### constexpr
 The types we can use in a `constexpr` are known as "literal types" because they are simple enough to have literal values. The arithmetic, reference and pointer types are literal types. For example,
 ```cpp
@@ -133,3 +143,119 @@ auto f = []( auto a, auto b ){ cout << a << ' ' << b; }
 f( "test", 1.2f ); // will print "test 1.2"
 ```
 In C++14 there is nothing useful bind can do that can't also be done with lambdas.
+
+### `explicit` specifier
+Specifies that a constructor or conversion function (since C++11) or deduction guide (since C++17) is explicit, that is, it cannot be used for implicit conversions and copy-initialization.
+
+Prefixing the `explicit` keyword to the constructor prevents the compiler from using that constructor for implicit conversions. Adding it to the above class will create a compiler error at the function call `DoBar (42)`. It is now necessary to call for conversion explicitly with  `DoBar (Foo (42))`.
+
+Another example, suppose, you have a class `String`:
+```cpp
+class String {
+public:
+    String(int n); // allocate n bytes to the String object
+    String(const char *p); // initializes object with char *p
+};
+```
+Now, if you try:
+```cpp
+String mystring = 'x';
+```
+The character `'x'` will be implicitly converted to `int` and then the `String(int)` constructor will be called. But, this is not what the user might have intended. So, to prevent such conditions, we shall define the constructor as `explicit`:
+```cpp
+class String {
+public:
+    explicit String (int n); //allocate n bytes
+    String(const char *p); // initialize sobject with string p
+};
+```
+### `=delete` modifier
+This modifier is useful for recourse-owning types such as `std::ifstream` and `std::unique_ptr` and `std::thread`. It usually used on copy construcotr and assignment assignment operator to make sure there's no concurrency issues on the associated recourses.
+
+### `()` and `{}` in constructors
+`()` uses value initialization if the parentheses are empty, or direct initialization if non-empty.
+
+`{}` uses list initialization, which implies value initialization if the braces are empty, or aggregate initialization if the initialized object is an aggregate.
+
+### `forward<typename>()` and `move()`
+`std::move` should be called without explicit template arguments and always results in an rvalue, while `std::forward` may end up as either. Use `std::move` when you know you no longer need the value and want to move it elsewhere, use `std::forward` to do that according to the values passed to your function template.
+
+Here's an example:
+```cpp
+#include <iostream>
+#include <memory>
+#include <utility>
+ 
+struct A {
+    A(int&& n) { std::cout << "rvalue overload, n=" << n << "\n"; }
+    A(int& n)  { std::cout << "lvalue overload, n=" << n << "\n"; }
+};
+ 
+class B {
+public:
+    template<class T1, class T2, class T3>
+    B(T1&& t1, T2&& t2, T3&& t3) :
+        a1_{std::forward<T1>(t1)},
+        a2_{std::forward<T2>(t2)},
+        a3_{std::forward<T3>(t3)}
+    {
+    }
+ 
+private:
+    A a1_, a2_, a3_;
+};
+ 
+//case 0
+template<class T, class U>
+std::unique_ptr<T> make_unique1(U&& u)
+{
+    return std::unique_ptr<T>(new T(std::forward<U>(u)));
+}
+
+
+//case 1
+//template<class T, class U>
+//std::unique_ptr<T> make_unique1(U&& u)
+//{
+//    return std::unique_ptr<T>(new T(u));
+//}
+
+//case 2
+//template<class T, class U>
+//std::unique_ptr<T> make_unique1(U&& u)
+//{
+//    return std::unique_ptr<T>(new T(std::move(u)));
+//}
+ 
+template<class T, class... U>
+std::unique_ptr<T> make_unique2(U&&... u)
+{
+    return std::unique_ptr<T>(new T(std::forward<U>(u)...));
+}
+ 
+int main()
+{
+    auto p1 = make_unique1<A>(2); // rvalue
+    int i = 1;
+    auto p2 = make_unique1<A>(i); // lvalue
+ 
+    std::cout << "B\n";
+    auto t = make_unique2<B>(2, i, 3);
+}
+```
+case 0 outputs:
+>rvalue overload, n=2
+>
+>lvalue overload, n=1
+
+case 1 outputs: 
+>lvalue overload, n=2
+>
+>lvalue overload, n=1
+
+case 2 outputs:
+>rvalue overload, n=2
+>
+>rvalue overload, n=1
+
+We can see here that by calling `move()`, two cases are casted to rvalues. In case 1, if dicretly call `new T(u)`, the constructor of `T` treat both cases as lvalues no matter what is supplied to `make_unique1`. By using `std::forward<typename>()`, the supplied parameters are passed as-it-is to the constructor of `T`.
