@@ -39,3 +39,32 @@ You need to wrap the arguments that need to be references in `std::ref`.
 std::thread t(update_data_for_widget, w, std::ref(data));
 ```
 >**std::ref**: Function templates ref and cref are helper functions that generate an object of type std::reference_wrapper, using template argument deduction to determine the template argument of the result.
+
+## Supply a member function pointer and a suitable object pointer
+You can pass a member function pointer as the function, provided you supply a suitable object pointer as the first argument:
+```cpp
+class X
+{
+public:
+    void do_lengthy_work();
+};
+X my_x;
+std::thread t(&X::do_lengthy_work,&my_x);
+```
+This code will invoke `my_x.do_lengthy_work()` on the new thread, because the address of `my_x` is supplied as the object pointer. You can also supply arguments to such a member function call: the third argument to the std::thread constructor will be the first argument to the member function, and so forth.
+
+## Supply a smart pointer
+The following example shows the use of std::move to transfer ownership of a dynamic object into a thread:
+```cpp
+void process_big_object(std::unique_ptr<big_object>);
+std::unique_ptr<big_object> p(new big_object);
+p->prepare_data(42);
+std::thread t(process_big_object,std::move(p));
+```
+By specifying `std::move(p)` in the `std::thread` constructor, the ownership of big_object is transferred first into internal storage for the newly created thread and then into process_big_object.
+>`std::move` is used to indicate that an object t may be "moved from", i.e. allowing the efficient transfer of resources from t to another object. 
+> 1. In C++11, in addition to copy constructors, objects can have move constructors.
+(And in addition to copy assignment operators, they have move assignment operators.)
+> 2. The move constructor is used instead of the copy constructor, if the object has type "rvalue-reference" (`Type &&`).
+> 3. `std::move()` is a cast that produces an rvalue-reference to an object, to enable moving from it.
+> 
