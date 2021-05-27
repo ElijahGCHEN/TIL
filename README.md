@@ -4,6 +4,8 @@ Inspired by https://github.com/jbranchaud/til.
 
 ---
 ## Reverse Chronological Order
+- [2021/05/27](date/20210524.md)
+- [2021/05/26](date/20210524.md)
 - [2021/05/24](date/20210524.md)
 - [2021/05/23](date/20210523.md)
 - [2021/05/19](date/20210519.md)
@@ -38,6 +40,10 @@ Inspired by https://github.com/jbranchaud/til.
 - [Macro Definitio](c++/macro-definition.md)
 - [Enumeration](c++/enumerations.md)
 - [Modulo](c++/modulo.md)
+
+#### Concurrency && Parallel
+- [Concepts](c++/concurrency-parallel/concepts.md)
+- [Thread Management](c++/concurrency-parallel/thread-management.md)
 
 ### Software Engineering
 #### Design Patterns
