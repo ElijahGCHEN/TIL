@@ -178,6 +178,7 @@ This modifier is useful for recourse-owning types such as `std::ifstream` and `s
 `{}` uses list initialization, which implies value initialization if the braces are empty, or aggregate initialization if the initialized object is an aggregate.
 
 ### `forward<typename>()` and `move()`
+- `std::move` is a **template function**, so it works on any type `T`; `std::forward` is a **template function**, so it works on any type `T`, and it takes its sole parameter via lvalue reference to a reference-less `T`; 
 `std::move` should be called without explicit template arguments and always results in an rvalue, while `std::forward` may end up as either. Use `std::move` when you know you no longer need the value and want to move it elsewhere, use `std::forward` to do that according to the values passed to your function template.
 
 Here's an example:
