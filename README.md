@@ -36,7 +36,7 @@ Inspired by https://github.com/jbranchaud/til.
 - [Delete and Explicit Keywords](c++/delete-and-explicit-keywords.md)
 - [Variadic Templates](c++/variadic-templates.md)
 - [Template Specification](c++/template-specialization.md)
-- [Class Template](c++/class-template.md)
+- [Class Template](c++/class-templates.md)
 - [Macro Definitio](c++/macro-definition.md)
 - [Enumeration](c++/enumerations.md)
 - [Modulo](c++/modulo.md)
