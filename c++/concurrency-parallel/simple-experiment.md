@@ -55,7 +55,8 @@ T parallel_accumulate(Iterator first,Iterator last,T init)
 
 The figure shows that for a relatively small data size (less than 65k), the parallel algorithm takes more time than the sequential algorithm due to the extra bookkeeping overhead. However, along with the increase of the data size, the 8-thread parallel algorithm shows a performance of roughly 3~4 times more efficient than the sequential algorithm.
 
-![Screenshot 2021-06-04 at 5 52 38 PM](https://user-images.githubusercontent.com/78017591/120783495-affa9f00-c55d-11eb-8fc1-3fe24214ef2d.png)
+![Screenshot 2021-06-04 at 6 15 43 PM](https://user-images.githubusercontent.com/78017591/120786531-e685e900-c560-11eb-9494-86d50614714a.png)
+
 
 
 ## Can parallelism be used in competitive programming?
