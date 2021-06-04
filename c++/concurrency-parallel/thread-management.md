@@ -16,3 +16,9 @@ t1=std::move(t3);          1
 ```
 - 1 This assignment will terminate the program!  In this case t1 already had an associated thread (which was running some_other_function), so `std::terminate()` is called to terminate the program.
 
+## The number of threads that can truly run concurrently
+This information can be retrieved by calling `std::thread::hardware_concurrency()`. On a multicore system it might be the number of CPU cores. If you run more threads than the hardware can support, it's called *oversubscription*.
+
+
+
+
