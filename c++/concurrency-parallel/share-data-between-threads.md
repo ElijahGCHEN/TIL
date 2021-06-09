@@ -1,3 +1,5 @@
+>In general, a lock should be held for only the minimum possible time needed to perform the required operations.
+
 ## Solution to avoid problematic data race condition
 1. Wrap the data structure 
 2. Lock-free programming
@@ -68,6 +70,8 @@ Deadlocks happen where you need to acquire two or more locks together.
 
 This can be dealt with `std::lock` -- a function that can lock two or more mutexes at once without risk of deadlock.
 
+ The std::adopt_lock parameter is supplied in addition to the mutex to indicate to the std::lock_guard objects that the mutexes are already locked, and they should adopt the ownership of the existing lock on the mutex rather than attempt to lock the mutex in the constructor.
+
 ```cpp
 class some_big_object;
 void swap(some_big_object& lhs,some_big_object& rhs);
@@ -89,6 +93,8 @@ public:
     }
 };
 ```
+
+
 C++17 provides additional support for this scenario, in the form of a new RAII template, std::scoped_lock<>. This is exactly equivalent to std::lock_guard<>, except that it is a variadic template.
 ```cpp
 void swap(X& lhs, X& rhs)
@@ -162,3 +168,27 @@ int main()
     std::cout << "All threads completed, the last one deleted Derived\n";
 }
 ```
+## Other locks
+### `unique_lock`
+`std::unique_lock` provides `lock()`, `try_lock()`, and `unlock()` member functions.
+
+You can pass std::adopt_lock as a second argument to the constructor to have the lock object manage the lock on a mutex
+
+There are cases where std::unique_lock is a better fit for the task at hand because you need to make use of the additional flexibility that allows you to don't always own the mutex that it's associated with.
+
+One possible use is to allow a function to lock a mutex and transfer ownership of that lock to the caller, so the caller can then perform additional actions under the protection of the same lock. The following code snippet shows an example of this; the get_lock() function locks the mutex and then prepares the data before returning the lock to the caller:
+```cpp
+std::unique_lock<std::mutex> get_lock()
+{
+    extern std::mutex some_mutex;
+    std::unique_lock<std::mutex> lk(some_mutex);
+    prepare_data();
+    return lk;                                      1
+}
+void process_data()
+{
+    std::unique_lock<std::mutex> lk(get_lock());    2
+    do_something();
+}
+```
+
