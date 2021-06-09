@@ -234,3 +234,26 @@ case 2 outputs:
 >rvalue overload, n=1
 
 We can see here that by calling `move()`, two cases are casted to rvalues. In case 1, if dicretly call `new T(u)`, the constructor of `T` treat both cases as lvalues no matter what is supplied to `make_unique1`. By using `std::forward<typename>()`, the supplied parameters are passed as-it-is to the constructor of `T`.
+
+### `const` in member functions
+```cpp
+const T& data() const { return data_; }
+^^^^^
+```
+means it will return a const reference to T (here data_)
+```cpp
+Class c;
+T& t = c.data()             // Not allowed.
+const T& tc = c.data()      // OK.
+```
+```cpp
+const T& data() const { return data_; }
+                ^^^^^
+```
+means the function will not modify any member variables of the class (unless the member is mutable).
+```cpp
+void Class::data() const {
+   this->data_ = ...;  // is not allowed here since data() is const (unless 'data_' is mutable)
+   this->anything = ... // Not allowed unless the thing is 'mutable'
+}
+```
