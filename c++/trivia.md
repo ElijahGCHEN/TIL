@@ -257,3 +257,6 @@ void Class::data() const {
    this->anything = ... // Not allowed unless the thing is 'mutable'
 }
 ```
+The benifits of using `const` are:
+1. You tell the compiler that it will not modify anything in the object.
+2. You can call the member function on constant object. If you don't have the `const` modifier then you can't call it on an object that has been defined as `const`.
