@@ -22,7 +22,11 @@ public:
     }
 };
 ```
-It makes sure that other threads have to wait for the mutex to unlock before they can process the data protected by the mutex. However, it's far from enough by only putting mutex in every member function.
+It makes sure that other threads have to wait for the mutex to unlock before they can process the data protected by the mutex. 
+
+Although there are occasions where this use of global variables is appropriate, in the majority of cases it’s common to group the mutex and the protected data together in a class rather than use global variables.
+
+However, it's far from enough by only putting mutex in every member function.
 
 ## Pitfall #1: Modifying from other places
 
@@ -106,25 +110,6 @@ std::scoped_lock<std::mutex,std::mutex> guard(lhs.m,rhs.m);
 
 ## An example: `share_ptr`
 
-1. Read the sections of the book describing static members
-2. Pick and understand share_ptr itself
-3. How lock makes the example thread-safe.
-
-Implementation notes
-In a typical implementation, shared_ptr holds only two pointers:
-the stored pointer (one returned by get());
-a pointer to control block.
-The control block is a dynamically-allocated object that holds:
-either a pointer to the managed object or the managed object itself;
-the deleter (type-erased);
-the allocator (type-erased);
-the number of shared_ptrs that own the managed object;
-the number of weak_ptrs that refer to the managed object.
-When shared_ptr is created by calling std::make_shared or std::allocate_shared, the memory for both the control block and the managed object is created with a single allocation. The managed object is constructed in-place in a data member of the control block. When shared_ptr is created via one of the shared_ptr constructors, the managed object and the control block must be allocated separately. In this case, the control block stores a pointer to the managed object.
-The pointer held by the shared_ptr directly is the one returned by get(), while the pointer/object held by the control block is the one that will be deleted when the number of shared owners reaches zero. These pointers are not necessarily equal.
-The destructor of shared_ptr decrements the number of shared owners of the control block. If that counter reaches zero, the control block calls the destructor of the managed object. The control block does not deallocate itself until the std::weak_ptr counter reaches zero as well.
-In existing implementations, the number of weak pointers is incremented ([1], [2]) if there is a shared pointer to the same control block.
-To satisfy thread safety requirements, the reference counters are typically incremented using an equivalent of std::atomic::fetch_add with std::memory_order_relaxed (decrementing requires stronger ordering to safely destroy the control block).
 
 ```cpp
 #include <iostream>
