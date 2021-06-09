@@ -260,3 +260,26 @@ void Class::data() const {
 The benifits of using `const` are:
 1. You tell the compiler that it will not modify anything in the object.
 2. You can call the member function on constant object. If you don't have the `const` modifier then you can't call it on an object that has been defined as `const`.
+
+### `static` members
+
+- The static members of a class exist outside any object. Objects do not contain data associated with static data members.
+
+- Similarly, static member functions are not bound to any object; they do not have a this pointer. As a result, static member functions may not be declared as const, and we may not refer to this in the body of a static member. This restriction applies both to explicit uses of this and to implicit uses of this by calling a nonstatic member.
+
+- When we define a static member outside the class, we do not repeat the static keyword. The keyword appears only with the declaration inside the class body.
+- We must define and initialize each static data member outside the class body.
+- Like global objects, static data members are defined outside any function. Hence, once they are defined, they continue to exist until the program completes.
+- The best way to ensure that the object is defined exactly once is to put the definition of static data members in the same file that contains the definitions of the class noninline member functions.
+-  we can provide in-class initializers for static members that have const integral type and must do so for static members that are constexprs of literal type:
+```cpp
+class Account {
+public:
+    static double rate() { return interestRate; }
+    static void rate(double);
+private:
+    static constexpr int period = 30;// period is a constant expression
+    double daily_tbl[period];
+};
+```
+- Even if a const static data member is initialized in the class body, that member ordinarily should be defined outside the class definition.
