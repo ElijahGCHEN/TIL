@@ -57,6 +57,8 @@ constexpr double PI3 = PI2;  // ok
 13. Examples (optional)
 
 ### Data Types
+The C++ standard does not define the size of each type, but it does define the minimum width.
+
 As to the difference between the two sets, the C++ standard mandates minimum ranges for each, and that long long is at least as wide as long.
 ```
 int型の数値の最小値: -2147483648
@@ -280,3 +282,46 @@ private:
 };
 ```
 - Even if a const static data member is initialized in the class body, that member ordinarily should be defined outside the class definition.
+
+### `extern` keyword
+
+It is useful when you share a variable between a few modules. You define it in one module, and use extern in the others.
+
+For example:
+
+in file1.cpp:
+```cpp
+int global_int = 1;
+```
+in file2.cpp:
+```cpp
+extern int global_int;
+//in some function
+cout << "global_int = " << global_int;
+```
+
+### lambda and its return
+
+- use `[&]` to capture all variables in scope by reference, and use `[=]` to capture by value.
+```cpp
+[](int x) -> std::vector<int>{
+             if (x%2)
+                 return {1, 2};
+             else
+                 return {3, 4};
+ });
+ ```
+The `-> std::vector<int>` operator, called trailing return type, tells the compiler that this lambda will return a vector of integers.
+
+- The mutable specification allows a by-value parameter to be modified by the body of the lambda. A variable in the parameter list is typically captured const-by-value, so the mutable specification just removes this restriction.
+
+
+### const_iterator and iterator
+
+There is no performance difference.
+
+A `const_iterator` is an iterator that points to const value (like a `const T*` pointer); dereferencing it returns a reference to a constant value (const T&) and prevents modification of the referenced value: it enforces const-correctness.
+
+When you have a const reference to the container, you can only get a `const_iterator`.
+
+### `auto` and 
