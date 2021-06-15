@@ -74,7 +74,7 @@ long long　int型の数値のバイト数：８
 
 ### `#define` and `typedef`
 `#define` is a preprocessor token: the compiler itself will never see it.
-`typedef` is a compiler token: the preprocessor does not care about it.
+`typedef` is a compiler token: the preprocessor does not care about it. Also, `typedef` is equivalent to `using` for type alias.
 
 `typedef` obeys scoping rules just like variables, whereas `define` stays valid until the end of the compilation unit (or until a matching undef).
 
