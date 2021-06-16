@@ -97,3 +97,17 @@ It is also possible for your program to link itself while it executes during run
 #### Libraries
 
 Libraries that involve system programming include `limits.h`, `stdio.h`, `time.h` and so on.
+
+## C++
+
+### General Conventions and Concepts
+
+The _start() function is the actual entry point of the application, while the main() function is called by the _start() function after initialization has completed.
+
+Also, function names are mangled in C++. That's basically because of the function overloading feature introduced in C++.
+
+### Language Syntax
+### Libraries
+
+For example, console input/output, threading libraries, and so on.
+
