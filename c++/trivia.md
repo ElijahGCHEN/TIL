@@ -287,6 +287,8 @@ private:
 
 It is useful when you share a variable between a few modules. You define it in one module, and use extern in the others.
 
+To clarify, using `extern int x;` tells the compiler that an object of type int called `x` exists somewhere. It's not the compilers job to know where it exists, it just needs to know the type and name so it knows how to use it. Once all of the source files have been compiled, the **linker** will resolve all of the references of `x` to the one definition that it finds in one of the compiled source files. For it to work, the definition of the `x` variable needs to have what's called “external linkage”, which basically means that it needs to be declared outside of a function (at what's usually called “the file scope”) and without the static keyword.
+
 For example:
 
 in file1.cpp:
