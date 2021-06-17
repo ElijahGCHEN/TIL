@@ -5,3 +5,20 @@
 There are situations when a header-only library is the only option, for example when dealing with templates.
 
 Having a header-only library also means you don't have to worry about different platforms where the library might be used. When you separate the implementation, you usually do so to hide implementation details, and distribute the library as a combination of headers and libraries (lib, dll's or .so files). These of course have to be compiled for all different operating systems/versions you offer support.
+
+The issue with these types of libraries is that they have to play fancy tricks to include global variables in the library itself. 
+
+After C++17, it's possible to only declaimer the global variable using `inline`:
+```cpp	
+#include <iostream>
+
+inline auto msg = "Hello World\n";
+
+int main(void)
+{
+    std::cout << msg;
+}
+
+// > g++ scratchpad.cpp; ./a.out
+// Hello World
+```
