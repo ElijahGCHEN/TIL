@@ -140,7 +140,7 @@ It's the networking API provided neither by C or C++.
 C++ leverages the POSIX threads library (pthreads)—so, even though C++ provides a set of APIs for working with threads, in the end, POSIX threads are responsible for threading in all cases. 
 
 
-# System Types for C and C++
+# Chapter: System Types for C and C++
 
 Never assume, while system programming, that when interfacing with a system call, that your application's definition of a specific type is the same as the type the API assumes.
 
@@ -209,7 +209,7 @@ we can wrap the structure with the `#pragma pack` and `#pragma pop` macros. Thes
 
 **Specifically, the size of a pointer depends entirely on the CPU architecture, operating system, and mode the application is running in.**
 
-# C++ 17
+# Chapter: C++ 17
 
 ## Changes to Syntax
 
@@ -329,11 +329,11 @@ std::cout << std::get<double>(v) << '\n';
 
 `std::optional` is a nullable value type. It has the same interface as `unique_ptr`.
 
-# Resource Acquisition Is Initialization (RAII)
+## Resource Acquisition Is Initialization (RAII)
 
 **RAII: If a recourse is allocated, it's allocated during the construction of an object, and when the object is destroyed, the resource is released**. It leads to construction and destruction features of C+.
 
-# The Guideline Support Library (GSL)
+## The Guideline Support Library (GSL)
 
 As stated before, the goal of the C++ Core Guidelines is to provide a set of best practices associated with programming C++. The GSL is a library designed to assist in maintaining compliance with these guidelines. In general, there are some overall themes associated with the GSL:
 
@@ -341,7 +341,7 @@ As stated before, the goal of the C++ Core Guidelines is to provide a set of bes
 - Expectation management 
 - No pointer arithmetic: It can only be done by well-tested support libraries such as `std::advance`.
 
-# Contracts
+## Contracts
 
 >C++ contract documents a contract between the author of an API and the user of the API, it also provides compile-time and runtime validation of that contract. 
 
@@ -365,3 +365,8 @@ int main(void)
 // exception: GSL: Precondition failure at ...
 ```
 
+## Utilities
+
+### `gsl::finally`
+
+### `gsl::narrow` and `gsl::narrow_cast` 
