@@ -1,3 +1,9 @@
+# Important General Rules
+
+1. Smart pointers can not be casted to raw pointers. Instead, in very rare cases, the `get()` member function should be called to return a raw pointer.
+2. Smart pointers can not be downcasted by using `static_cast` or `dynamic_cast`. Instead, `static_pointer_cast<>()` and `dynamic_pointer_cast<>()` should be used. Note that the typename enclosed in the angle brackets should not include `shared_ptr` keyword.
+3. When statically downcasting a base pointer pointing to a base object to a derived pointer, the behaviour is unpredictable. When dynamically downcasting a base pointer in the same situation, the cast fails and returns a null pointer.
+
 # `shared_ptr`
 
 ## Initialization 

@@ -327,3 +327,9 @@ A `const_iterator` is an iterator that points to const value (like a `const T*` 
 When you have a const reference to the container, you can only get a `const_iterator`.
 
 
+### `static_cast` and (typename)
+
+The classic C casts make no distinction between `static_cast<>()`, `reinterpret_cast<>()`, `const_cast<>()` and `dynamic_cast<>()`.
+
+We shouldn't use `static_cast` for casting down an inheritance hierarchy, but rather `dynamic_cast`. That will return either the null pointer or a valid pointer.
+

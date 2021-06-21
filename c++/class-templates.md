@@ -1,3 +1,5 @@
+**The C++17 way of deducing template arguments should be preferred**
+
 Take the following code as an example:
 ```cpp
 template <typename CreateObject> class BaseFactory {

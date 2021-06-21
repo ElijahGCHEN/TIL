@@ -12,8 +12,8 @@ The Linux ABI, which is technically System V ABI, includes:
 5. Exception handling
 6. Virtual memory layout
 7. Debugging
-8. The binary object format (in this case, ELF), which is discussed in the concept chapter.
-9. Program loading and linking
+8. The binary object format (in this case, ELF).
+9. Program loading and linking, which is discussed in the concept chapter.
 
 ## Register Layout
 
@@ -37,7 +37,6 @@ The code that manages stack frames is called the function's prolog (beginning) a
 
 C++ exceptions provide a way to return an error to a catch handler somewhere in the call stack.
 
-## Virtual Memory Layout
 
 ## Executable and Linkable Format (ELF)
 
@@ -54,6 +53,32 @@ Each ELF file is composed of sections. The sections are then grouped into segmen
 
 ### ELF Segments
 
-## Unix Filesystem
+## Unix Filesystem and processes
+
+## The `fork()` function
+
+`fork()` function takes the current process, and creates a duplicate child version of the process. Everything about the parent and child processes is the same, including opened file handles, memory, and so on, with the key difference being that the child process has a new process ID.
+
+The use of fork() creates n^2 processes, with n being the total number of times fork() is called.
+
+## The `wait()` function
+
+## Interprocess communication (IPC)
+
+### Unix pipes
+
+>A pipe is a mechanism for sending information from one process to another.
+
+### Unix shared memory
+
+Unlike Unix pipes, Unix shared memory provides a buffer that can be read and written to by both processes. 
+
+## The `exec()` function
+
+The exec() system call is used to override the existing process with a completely new process.
+
+
+
+
 
 
