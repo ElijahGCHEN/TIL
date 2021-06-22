@@ -1,15 +1,6 @@
 ### Inline Function
 **Inline function** is a function that is expanded in line when it is called. When the inline function is called whole code of the inline function gets inserted or substituted at the point of inline function call. 
 
-### Move and smart pointers
-Only one std::unique_ptr instance can point to a given object at a time, and when that instance is destroyed, the pointed-to object is deleted. The move constructor and move assignment operator allow the ownership of an object to be transferred around between `std::unique_ptr` instances. Such a transfer leaves the source object with a NULL pointer.
-
-For example, 
-```cpp
-std::unique_ptr p1(someClass);
-std::unique_ptr p2 = p1.move();
-```
-This will make `p1` as a NULL pointer.
 
 ### constexpr
 The types we can use in a `constexpr` are known as "literal types" because they are simple enough to have literal values. The arithmetic, reference and pointer types are literal types. For example,

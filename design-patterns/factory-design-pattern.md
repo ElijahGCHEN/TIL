@@ -17,3 +17,5 @@ farm.subscribe("CAT", [](const std::string & n) {return std::make_unique<Cat>(n)
 farm.subscribe("DOG", [](const std::string & n) {return std::make_unique<Dog>(n);});
 ```
 
+what should the Factory function return? It could certainly return a raw pointer, Widget\*. After all, that is what new returns. But this opens the way to incorrect use of the WidgetFactory—for example, instead of capturing the returned raw pointer in a unique pointer, we could pass it to a function such as Transmogrify that takes a raw pointer because it does not deal with the ownership. Now, nobody owns the widget, and it ends up as a memory leak. Ideally, WidgetFactory would be written in a way that would force the caller to take ownership of the returned object.
+

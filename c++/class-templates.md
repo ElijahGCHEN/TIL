@@ -67,3 +67,23 @@ int main()
 In the function version you don't tell the compiler what T is, but instead you expect the compiler to deduce it. In situations like yours the language is deliberately designed to deduce T as int & (note: not as int, but rather as int &). Once T is deduced as int &, the so called "reference collapsing" rules lead to function parameter type T && becoming int & - an ordinary lvalue reference. This parameter can successfully bind to lvalue argument i.
 
 >In succeed, T&& t is a forwarding reference, not an rvalue reference. But in test, it is an rvalue reference. A forwarding reference happens only when the parameter is T&&, and T is a template parameter of that function. A forwarding reference may bind to both lvalues and rvalues.
+>The reason why a forwarding reference can be both bound to lvalues and rvalues is because of C++ template deduction allows an lvalue to be passed in without extra effort. 
+>Therefore, in order to strict the reference type passed into the function, we must impose some extra constraints, for example:
+```cpp  
+#include <type_traits>
+
+struct OwnershipReceiver
+{
+  template <typename T,
+            class = typename std::enable_if
+            <
+                !std::is_lvalue_reference<T>::value
+            >::type
+           >
+  void receive_ownership(T&& t)
+  {
+     // taking file descriptor of t, and clear t
+  }
+};
+```
+

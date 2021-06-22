@@ -1,4 +1,4 @@
-A function pointer is just that—a pointer that denotes a function rather than an object. Like any other pointer, a function pointer points to a particular type. A function’s type is determined by its return type and the types of its parameters. The function’s name is not part of its type. For example:
+A function pointer is just that —- a pointer that denotes a function rather than an object. Like any other pointer, a function pointer points to a particular type. A function’s type is determined by its return type and the types of its parameters. The function’s name is not part of its type. For example:
 ```cpp
 // compares lengths of two strings
 bool lengthCompare(const string &, const string &);
@@ -10,7 +10,8 @@ bool (*pf)(const string &, const string &);  // uninitialized
 ```
 Starting from the name we are declaring, we see that pf is preceded by a `*`, so pf is a pointer. To the right is a parameter list, which means that pf points to a function. Looking left, we find that the type the function returns is bool. Thus, pf points to a function that has two const string& parameters and returns bool.
 
->The parentheses around *pf are necessary. If we omit the parentheses, then we declare pf as a function that returns a pointer to bool
+>The parentheses around \*pf are necessary. If we omit the parentheses, then we declare pf as a function that returns a pointer to bool
+
 
 # When to use 
 
@@ -46,7 +47,7 @@ decltype(f) ptr = f;
 We get a function type.
 
 ### define function type and pointer to function type
-As we’ve just seen in the declaration of useBigger, writing function pointer types quickly gets tedious. Type aliases, along with decltype (§ 2.5.3, p. 70), let us simplify code that uses function pointers:
+As we’ve just seen in the declaration of useBigger, writing function pointer types quickly gets tedious. Type aliases, along with decltype let us simplify code that uses function pointers:
 ```cpp
 // Func and Func2 have function type
 typedef bool Func(const string&, const string&);
