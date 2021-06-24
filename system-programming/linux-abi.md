@@ -25,6 +25,10 @@ Including `rip` (register instruction pointer), `rsp` (register stack pointer), 
 
 Each frame represents a function call, and starts with any arguments to a function beyond the first six being called (the first six arguments are passed as registers). Finally, the return address is pushed to the stack, and the function is called. Memory after the return address belongs to variables that are scoped to the function itself. This is why we call variables defined in a function *stack-based variables*. 
 
+The basic workflow of stack management is as follows:
+
+The *call* instruction will jump to a function and push the current address of *rip* to the stack as the return address. After the function is executed, the *ret* instruction will pop the return address from the stack and jump to the address that was popped.
+
 ## Function Prologs and Epilogs
 
 The code that manages stack frames is called the function's prolog (beginning) and epilog (ending).
