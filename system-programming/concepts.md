@@ -329,9 +329,7 @@ std::cout << std::get<double>(v) << '\n';
 
 `std::optional` is a nullable value type. It has the same interface as `unique_ptr`.
 
-## Resource Acquisition Is Initialization (RAII)
 
-**RAII: If a recourse is allocated, it's allocated during the construction of an object, and when the object is destroyed, the resource is released**. It leads to construction and destruction features of C+.
 
 ## The Guideline Support Library (GSL)
 

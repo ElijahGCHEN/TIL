@@ -324,3 +324,25 @@ The classic C casts make no distinction between `static_cast<>()`, `reinterpret_
 
 We shouldn't use `static_cast` for casting down an inheritance hierarchy, but rather `dynamic_cast`. That will return either the null pointer or a valid pointer.
 
+### `#ifdef` macro
+
+### Including the same header twice
+
+- It has to work. Because you might include two headers in a .cpp file, each of which include a number of files, some of which might be included by both. Therefore, if duplicated including is not supported, soon all C++ code would fall apart.
+- How does it work: Basically using `#ifndef HEADER_H`, `#define HEADER_H` and `#endif`. [example](https://stackoverflow.com/questions/3537260/why-its-valid-to-include-a-header-file-twice-in-c)
+```cpp
+#ifndef HEADER_H // HEADER_H is not defined, so we enter the "if" block
+#define HEADER_H // HEADER_H is now defined
+
+class MyClass {};// MyClass is now defined
+
+#endif           // leaving the "if" block
+
+#ifndef HEADER_H // HEADER_H *is* defined, so we do *not* enter the "if" block
+//#define HEADER_H
+//
+//class MyClass {};
+//
+#endif           // end of the skipped "if" block
+```
+
