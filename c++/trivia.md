@@ -346,3 +346,9 @@ class MyClass {};// MyClass is now defined
 #endif           // end of the skipped "if" block
 ```
 
+### I/O Manipulators
+
+Comparing to `std::endl`, `\n` is always preferred unless a flush, which is included in `std::endl`, is required.
+
+`std::cout<<std::boolalpha;` and other similar commands can change the output format.
+
