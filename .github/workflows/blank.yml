@@ -34,3 +34,11 @@ jobs:
         run: |
           echo Add other actions to build,
           echo test, and deploy your project.
+
+
+      - name: Get added files
+        run: |
+          echo "Added files:"
+          for file in $(jq -r '.[] | select(.status == "added") | .filename' <<< "$GITHUB_EVENT_PATH"); do
+          echo "- $file"
+          done
