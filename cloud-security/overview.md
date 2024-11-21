@@ -1,3 +1,3 @@
 > Cloud security generally includes **boundary security** (the interaction between your cloud assets and the outside world (typically the internet since physical interaction is the provider's responsibility)) and **platform security** (the measurements that mitigate the risks within the platform)
->
-> 
+
+Although thinking about *how to protect* is important, we need to ultimately consider *what to protect*. Sometimes there's no need to do all the protections if there's nothing an attacker can exploit (although it's not very likely), while sometimes you need to even consider the hardware makers if it's very sensitive. 
