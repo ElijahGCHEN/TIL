@@ -17,3 +17,6 @@ While Cloud NAT enables instances without public IP addresses to access the inte
 **Outbound Connections Only:** Cloud NAT primarily focuses on facilitating outbound connections from your private instances to the internet. It translates their private IP addresses to public IP addresses, allowing them to initiate requests and receive responses.
 
 **No Incoming Connection Handling:** Cloud NAT doesn't have the capability to receive incoming connections from the internet and forward them to your internal web server. It lacks features like load balancing, SSL termination, and request routing that are essential for web applications.   
+
+# Points
+A public NAT gateway must be in the same zone as the target virtual machine.
