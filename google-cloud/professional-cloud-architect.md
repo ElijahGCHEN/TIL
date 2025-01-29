@@ -43,9 +43,21 @@ Cloud systems automatically control and optimize resource use by leveraging a me
 
 **In essence, Google Cloud offers a blend of economic and operational advantages that enable businesses to thrive in the digital age. Its ability to drive cost-efficiency, foster innovation, meet regulations and provide scalability, all while maintaining high levels of security and reliability, underscores why using Google Cloud is important**
 
-## Cloud architect responsibilities
+# Cloud architect responsibilities
 
-> An architect's job is to translate the application, together with larger business needs, goals, and requirements, into a cloud infrastructure design that represents the intersection of those needs, all while being secure, available, cost-effective, and scalable.
+> An architect's job is to translate the application (either already existing or you need to work with the DevOps team to implement it), together with larger business needs, goals, and requirements, into a cloud infrastructure design that represents the intersection of those needs, all while being secure, available, cost-effective, and scalable.
 
-### Solution design and architecture
-Designing the overall cloud solution architecture, including application, data and infrastructure components. This means selecting the proper cloud services, defining 
+## Solution design and architecture
+Designing the overall cloud solution architecture, including application, data and infrastructure components. This means selecting the proper cloud services, defining the architecture patterns, as well as creating architectural diagrams and documents.
+
+## Capacity planning, availability and scalability
+Determining how much a service is needed for an architecture to meet the requisite workload at the required capacity and availability levels.
+
+## Security and compliance implementation 
+Making sure that the cloud architecture meets the organizational security requirements and complies with relevant industrial compliances.
+
+## Cost optimization
+Selecting right services, rightsizing them, optimizing storage and data transfer costs, and countinuously monitering and optimizing cloud infrastructure.
+
+## Trouble shooting and problem solving 
+Investing and resolving technical issues that arose in the cloud environment.
